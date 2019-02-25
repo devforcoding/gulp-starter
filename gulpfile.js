@@ -39,7 +39,6 @@ gulp.task('minify-css', function () {
 });
 
 
-
 gulp.task('sass-auto', gulp.series('sass','autoprefixer', 'minify-css'));
 
 
