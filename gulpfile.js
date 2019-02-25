@@ -1,6 +1,7 @@
 var gulp      = require('gulp'),
     sass      = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
+    rename = require("gulp-rename"),
     imagemin = require('gulp-imagemin'),
     browserS  = require('browser-sync'),
     concat    = require('gulp-concat'),
@@ -33,21 +34,11 @@ gulp.task('sass', function () {
 gulp.task('minify-css', function () {
     return gulp.src('dist/**/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(rename('css/general.min.css'))
         .pipe(gulp.dest('dist'));
 });
 
 
-// gulp.task('imagemin', function(){
-//     gulp.src('app/images/*')
-//         .pipe(imagemin({
-//             // interlaced: true,
-//             // progressive: true,
-//             optimizationLevel: 5,
-//             svgoPlugins: [{removeViewBox: true}]
-//         }))
-//         .pipe(gulp.dest('dist/images'))
-//
-// });
 
 gulp.task('sass-auto', gulp.series('sass','autoprefixer', 'minify-css'));
 
